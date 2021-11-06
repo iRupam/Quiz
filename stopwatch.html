@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang = "en">
+    <head>
+        <title>Stopwatch</title>
+        <link rel="stylesheet" href="stopwatch.css">
+    </head>
+    <body>
+        <div id="timer">
+            <div>Seconds: <span id="time">0</span></div>
+        </div>
+        <div id="controls">
+            <input type="button" id="startTimer" value="Start Timer" onclick="start();">
+        <input type="button" id="stopTimer" value="Stop Timer"  onclick="stop();">
+        <input type="button" id="resetTimer" value="Reset Timer"  onclick="reset();">
+        </div> 
+        <script>
+            var timeElapsed = 0;
+            var timerID = -1;
+            function tick() {
+                timeElapsed++
+                document.getElementById("time").innerHTML = timeElapsed;
+            }
+
+            function start() {
+                if(timerID == -1){
+                    timerID = setInterval(tick, 1000);
+                }
+            }
+
+            function stop() {
+                if(timerID != -1){
+                    clearInterval(timerID)
+                    timerID = -1
+                }
+            }
+
+            function reset() {
+                stop();
+                timeElapsed = -1;
+                tick()
+            }
+        </script>
+    </body>
+</html>
